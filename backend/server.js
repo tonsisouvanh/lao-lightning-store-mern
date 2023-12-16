@@ -4,6 +4,7 @@ import colors from "colors";
 import connectDB from "./config/db.js";
 import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
+import restaurantRoute from "./routes/restaurantRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/restaurants", restaurantRoute);
 
 app.use(notFound);
 app.use(errorHandler);
