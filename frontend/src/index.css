@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+:root {
+  font-family: 'Outfit', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  --toastify-font-family: "notosanslao";
+}
+
+/* @font-face {
+  font-family: "notosanslao";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/NotoSansLao/NotoSansLao-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "notosanslao";
+  font-style: normal;
+  font-weight: 800;
+  src: url("./fonts/NotoSansLao/NotoSansLao-Bold.ttf") format("truetype");
+} */
+
+/* .text-outline {
+  -webkit-text-stroke: 0.5px black;
+} */
+
+/* width */
+/* ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+} */
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+  background: #88888886;
+  border-radius: 5px;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+
+.swiper-button-prev,
+.swiper-button-next {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff; /* Replace with your desired color */
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: #fff; /* Replace with your desired color */
+  font-size: 1rem;
+}
+
+/* @media screen and (min-width: 480px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    height: 5rem;
+    width: 3rem;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    color: #fff;
+    font-size: 2rem;
+  }
+} */
+
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
+}
