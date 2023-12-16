@@ -11,22 +11,15 @@ const foodSchema = new Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: [String], // Assuming categories are strings
-      required: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now,
-    },
+    image: [
+      {
+        type: String,
+      },
+    ],
     restaurants: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Restaurant", // Assuming you have a Restaurant model
+        ref: "Restaurant",
       },
     ],
   },
@@ -37,4 +30,4 @@ const foodSchema = new Schema(
 
 const Food = mongoose.model("Food", foodSchema);
 
-module.exports = Food;
+export default Food;

@@ -7,16 +7,16 @@ const restaurantSchema = new Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+    },
+    openingHours: {
+      type: String,
+    },
     location: {
       type: String,
       required: true,
     },
-    //   reviews: [
-    //     {
-    //       type: Schema.Types.ObjectId,
-    //       ref: "Review", // Assuming you have a Review model
-    //     },
-    //   ],
     image: [
       {
         type: String,
@@ -30,4 +30,4 @@ const restaurantSchema = new Schema(
 
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
-module.exports = Restaurant;
+export default Restaurant;

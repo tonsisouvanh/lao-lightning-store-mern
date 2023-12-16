@@ -7,23 +7,12 @@ const TravelPlaceSchema = new Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+    },
     location: {
       type: String,
       required: true,
-    },
-    //   reviews: [
-    //     {
-    //       type: Schema.Types.ObjectId,
-    //       ref: "Review", // Assuming you have a Review model
-    //     },
-    //   ],
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now,
     },
     image: [
       {
@@ -38,4 +27,4 @@ const TravelPlaceSchema = new Schema(
 
 const TravelPlace = mongoose.model("TravelPlace", TravelPlaceSchema);
 
-module.exports = TravelPlace;
+export default TravelPlace;

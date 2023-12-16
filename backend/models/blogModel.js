@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const blogSchema = new Schema(
@@ -13,23 +13,26 @@ const blogSchema = new Schema(
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Assuming you have a User model
+      ref: "User",
       required: true,
     },
     categories: {
-      type: [String], // Assuming categories are strings
+      type: [String],
       required: true,
+    },
+    image: {
+      type: String,
     },
     tags: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Tag", // Assuming you have a Tag model
+        ref: "Tag",
       },
     ],
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment", // Assuming you have a Comment model
+        ref: "Comment",
       },
     ],
   },
@@ -40,4 +43,4 @@ const blogSchema = new Schema(
 
 const Blog = mongoose.model("Blog", blogSchema);
 
-module.exports = Blog;
+export default Blog;
