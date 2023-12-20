@@ -220,3 +220,136 @@ export const mockBlogsData: BlogType[] = [
     authorTitle: "Founder, Crypto Innovations",
   },
 ];
+
+export const foodData = [
+  {
+    _id: {
+      $oid: "657d6f3add43646167fd2d78",
+    },
+    name: "Laotian Spicy Noodles",
+    category: "Noodles",
+    image: [
+      "https://example.com/spicy-noodles1.jpg",
+      "https://example.com/spicy-noodles2.jpg",
+    ],
+    restaurants: [
+      {
+        $oid: "657d6e779b6d94067d32e092",
+      },
+      {
+        $oid: "657d6e779b6d94067d32e093",
+      },
+    ],
+    __v: 0,
+    createdAt: {
+      $date: "2023-12-16T09:34:50.093Z",
+    },
+    updatedAt: {
+      $date: "2023-12-16T09:34:50.093Z",
+    },
+  },
+  {
+    _id: {
+      $oid: "657d6f3add43646167fd2d79",
+    },
+    name: "Grilled Mekong River Fish",
+    category: "Seafood",
+    image: [
+      "https://example.com/river-fish1.jpg",
+      "https://example.com/river-fish2.jpg",
+    ],
+    restaurants: [
+      {
+        $oid: "657d6e779b6d94067d32e093",
+      },
+      {
+        $oid: "657d6e779b6d94067d32e094",
+      },
+    ],
+    __v: 0,
+    createdAt: {
+      $date: "2023-12-16T09:34:50.094Z",
+    },
+    updatedAt: {
+      $date: "2023-12-16T09:34:50.094Z",
+    },
+  },
+  {
+    _id: {
+      $oid: "657d6f3add43646167fd2d7a",
+    },
+    name: "Golden Pagoda Spring Rolls",
+    category: "Appetizers",
+    image: [
+      "https://example.com/spring-rolls1.jpg",
+      "https://example.com/spring-rolls2.jpg",
+    ],
+    restaurants: [
+      {
+        $oid: "657d6e779b6d94067d32e094",
+      },
+      {
+        $oid: "657d6e779b6d94067d32e095",
+      },
+    ],
+    __v: 0,
+    createdAt: {
+      $date: "2023-12-16T09:34:50.095Z",
+    },
+    updatedAt: {
+      $date: "2023-12-16T09:34:50.095Z",
+    },
+  },
+  {
+    _id: {
+      $oid: "657d6f3add43646167fd2d7b",
+    },
+    name: "Luang Flavors Sticky Rice",
+    category: "Desserts",
+    image: [
+      "https://example.com/sticky-rice1.jpg",
+      "https://example.com/sticky-rice2.jpg",
+    ],
+    restaurants: [
+      {
+        $oid: "657d6e779b6d94067d32e095",
+      },
+      {
+        $oid: "657d6e779b6d94067d32e096",
+      },
+    ],
+    __v: 0,
+    createdAt: {
+      $date: "2023-12-16T09:34:50.095Z",
+    },
+    updatedAt: {
+      $date: "2023-12-16T09:34:50.095Z",
+    },
+  },
+  {
+    _id: {
+      $oid: "657d6f3add43646167fd2d7c",
+    },
+    name: "Riverside Noodle Soup",
+    category: "Soup",
+    image: [
+      "https://example.com/noodle-soup1.jpg",
+      "https://example.com/noodle-soup2.jpg",
+    ],
+    restaurants: [
+      {
+        $oid: "657d6e779b6d94067d32e096",
+      },
+      {
+        $oid: "657d6e779b6d94067d32e092",
+      },
+    ],
+    __v: 0,
+    createdAt: {
+      $date: "2023-12-16T09:34:50.095Z",
+    },
+    updatedAt: {
+      $date: "2023-12-16T09:34:50.095Z",
+    },
+  },
+];

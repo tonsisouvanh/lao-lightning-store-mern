@@ -11,7 +11,8 @@ import "./styles.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 import Card from "../../cards/Card";
-import { CardType } from "../../../type";
+import { CardType, Restaurant } from "../../../type";
+import { useEffect, useState } from "react";
 
 type Props = {
   slidesData: CardType[];
@@ -21,6 +22,7 @@ type Props = {
   cardSize?: string;
   topic?: string;
 };
+
 
 const DiscoverSlider = ({
   slidesData,
@@ -38,6 +40,8 @@ const DiscoverSlider = ({
     },
   },
 }: Props) => {
+ 
+
   return (
     <>
       {slidesData && slidesData.length > 0 ? (

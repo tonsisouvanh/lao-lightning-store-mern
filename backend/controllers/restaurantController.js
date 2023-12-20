@@ -83,18 +83,17 @@ const createRestaurant = asyncHandler(async (req, res) => {
 // @route   PUT /api/restaurants/:id
 //* @access  Private/Admin
 const updateRestaurant = asyncHandler(async (req, res) => {
-  const { name, description, openingHours, location, image } = req.body;
-
-  const restaurant = await Restaurant.findById(req.params.id);
-  if (restaurant) {
-    restaurant.name = name;
-    restaurant.description = description;
-    restaurant.openingHours = openingHours;
-    restaurant.location = location;
-    restaurant.image = image;
-
-    const updatedRestaurant = await restaurant.save();
-    res.json(updatedRestaurant);
+  const restaurantId = req.params.id;
+  console.log(req.body);
+  const updatedRestaurant = await Restaurant.findByIdAndUpdate(
+    restaurantId,
+    { ...req.body },
+    {
+      new: true,
+    }
+  );
+  if (updatedRestaurant) {
+    res.json({ ...updatedRestaurant._doc });
   } else {
     res.status(404);
     throw new Error("Restaurant not found");

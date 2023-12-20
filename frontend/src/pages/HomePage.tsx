@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Benefit from "../components/layout/Benefit";
 import Blog from "../components/layout/Blogs";
 import Contact from "../components/layout/Contact";
@@ -9,8 +10,12 @@ import HowItWorks from "../components/layout/HowItWorks";
 import LightningWalletSignup from "../components/layout/LightningWalletSignup";
 import Testimonials from "../components/layout/Testimonials";
 import { mockFoodData, mockRestaurantData } from "../data/data";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const { auth } = useSelector((state: RootState) => state.auth);
   return (
     <>
       <Hero />
