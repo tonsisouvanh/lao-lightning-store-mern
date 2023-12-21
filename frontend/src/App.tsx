@@ -1,14 +1,14 @@
-import React, { lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import RestaurantListPage from "./pages/admin/RestaurantListPage.tsx";
+import Header from "./components/layout/Header";
+import AddFood from "./pages/admin/AddFood.tsx";
 import AddRestaurant from "./pages/admin/AddRestaurant.tsx";
+import EditFood from "./pages/admin/EditFood.tsx";
 import EditRestaurant from "./pages/admin/EditRestaurant.tsx";
 import FoodListPage from "./pages/admin/FoodListPage.tsx";
-import AddFood from "./pages/admin/AddFood.tsx";
-import EditFood from "./pages/admin/EditFood.tsx";
+import RestaurantListPage from "./pages/admin/RestaurantListPage.tsx";
 
 // const HomePage = lazy(() => import("./pages/HomePage"));
 // const BlogPage = lazy(() => import("./pages/BlogPage"));
@@ -19,12 +19,12 @@ import EditFood from "./pages/admin/EditFood.tsx";
 // const AdminLayout = lazy(() => import("./pages/admin/AdminLayout.tsx"));
 // const Dashboard = lazy(() => import("./pages/admin/Dashboard.tsx"));
 import { Toaster } from "react-hot-toast";
-import HomePage from "./pages/HomePage.tsx";
 import BlogPage from "./pages/BlogPage.tsx";
 import CreateBlog from "./pages/CreateBlog.tsx";
-import SignupPage from "./pages/SignupPage.tsx";
-import SigninPage from "./pages/SigninPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
+import SigninPage from "./pages/SigninPage.tsx";
+import SignupPage from "./pages/SignupPage.tsx";
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
 function App() {
