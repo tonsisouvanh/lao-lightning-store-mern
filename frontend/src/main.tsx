@@ -10,12 +10,12 @@
 
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-      <Suspense fallback={<ThemedSuspense />}>
+      {/* <Suspense fallback={<ThemedSuspense />}> */}
         <Provider store={store}>
           <Router>
             <App />
           </Router>
         </Provider>
-      </Suspense>
+      {/* </Suspense> */}
     </React.StrictMode>,
   );

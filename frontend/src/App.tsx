@@ -9,21 +9,24 @@ import EditRestaurant from "./pages/admin/EditRestaurant.tsx";
 import FoodListPage from "./pages/admin/FoodListPage.tsx";
 import AddFood from "./pages/admin/AddFood.tsx";
 import EditFood from "./pages/admin/EditFood.tsx";
-// import HomePage from "./pages/HomePage";
-// import BlogPage from "./pages/BlogPage";
-// import CreateBlog from "./pages/CreateBlog";
-// import SignupPage from "./pages/SignupPage";
-// import SigninPage from "./pages/SigninPage";
-// import ProfilePage from "./pages/ProfilePage";
-const HomePage = lazy(() => import("./pages/HomePage"));
-const BlogPage = lazy(() => import("./pages/BlogPage"));
-const CreateBlog = lazy(() => import("./pages/CreateBlog"));
-const SignupPage = lazy(() => import("./pages/SignupPage"));
-const SigninPage = lazy(() => import("./pages/SigninPage"));
-const ProfilePage = lazy(() => import("./pages/ProfilePage"));
-const AdminLayout = lazy(() => import("./pages/admin/AdminLayout.tsx"));
-const Dashboard = lazy(() => import("./pages/admin/Dashboard.tsx"));
+
+// const HomePage = lazy(() => import("./pages/HomePage"));
+// const BlogPage = lazy(() => import("./pages/BlogPage"));
+// const CreateBlog = lazy(() => import("./pages/CreateBlog"));
+// const SignupPage = lazy(() => import("./pages/SignupPage"));
+// const SigninPage = lazy(() => import("./pages/SigninPage"));
+// const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+// const AdminLayout = lazy(() => import("./pages/admin/AdminLayout.tsx"));
+// const Dashboard = lazy(() => import("./pages/admin/Dashboard.tsx"));
 import { Toaster } from "react-hot-toast";
+import HomePage from "./pages/HomePage.tsx";
+import BlogPage from "./pages/BlogPage.tsx";
+import CreateBlog from "./pages/CreateBlog.tsx";
+import SignupPage from "./pages/SignupPage.tsx";
+import SigninPage from "./pages/SigninPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
+import AdminLayout from "./pages/admin/AdminLayout.tsx";
+import Dashboard from "./pages/admin/Dashboard.tsx";
 function App() {
   return (
     <React.Fragment>
