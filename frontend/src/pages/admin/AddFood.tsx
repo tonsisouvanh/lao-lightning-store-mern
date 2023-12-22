@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
 type Props = {};
@@ -106,7 +106,9 @@ const AddFood = (props: Props) => {
             </div>
             <div className="mt-8 flex w-full gap-4 border-t border-gray-200 p-2 pt-8 text-center">
               <button className="btn btn-primary">CREATE</button>
-              <button className="btn btn-outline btn-primary">CANCEL</button>
+              <Link to="admin/restaurantlist">
+                <button className="btn btn-outline btn-primary">CANCEL</button>
+              </Link>
             </div>
           </form>
         </div>

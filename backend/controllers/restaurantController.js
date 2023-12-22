@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Restaurant from "../models/restaurantModel.js";
-import { uploadSingleImage } from "../utils/imageUpload.js";
+import { deleteImage, uploadSingleImage } from "../utils/imageUpload.js";
+import { extractImageId } from "../utils/util.js";
 const opts = {
   overwrite: true,
   invalidate: true,
@@ -12,7 +13,7 @@ const opts = {
 // @route   GET /api/restaurants
 // @access  Public
 const getRestaurants = asyncHandler(async (req, res) => {
-  const pageSize = 10;
+  const pageSize = 100;
   const page = Number(req.query.pageNumber) || 1;
 
   const keyword = req.query.keyword
@@ -53,7 +54,11 @@ const deleteRestaurant = asyncHandler(async (req, res) => {
   const restaurant = await Restaurant.findById(req.params.id);
 
   if (restaurant) {
-    await Restaurant.deleteOne({ _id: req.params.id });
+    await Restaurant.deleteOne({
+      _id: req.params.id,
+    });
+    const imageId = extractImageId(restaurant.image[0]);
+    await deleteImage(imageId, opts);
     res.json({ message: "restaurant removed" });
   } else {
     res.status(404);
@@ -66,19 +71,21 @@ const deleteRestaurant = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const createRestaurant = asyncHandler(async (req, res) => {
   const { name, description, openingHours, location, image } = req.body;
-
+  let addImage = [];
+  if (image?.length > 0) {
+    const imageUrl = await uploadSingleImage(image[0], opts);
+    addImage = [imageUrl];
+  }
   const newRestaurant = new Restaurant({
     name,
     description,
     openingHours,
     location,
-    image: image,
+    image: addImage || [],
   });
-
   const createdRestaurant = await newRestaurant.save();
-
   if (createdRestaurant) {
-    res.status(201).json(createdRestaurant);
+    res.status(201).json("createdRestaurant");
   } else {
     res.status(500);
     throw new Error("Create restaurant failed");
@@ -90,9 +97,23 @@ const createRestaurant = asyncHandler(async (req, res) => {
 //* @access  Private/Admin
 const updateRestaurant = asyncHandler(async (req, res) => {
   const restaurantId = req.params.id;
+  let updateRestaurant = {};
+  if (req.body?.image?.length > 0) {
+    const { image } = req.body;
+    const imageUrl = await uploadSingleImage(image[0], opts);
+    const addimage = [imageUrl];
+    updateRestaurant = new Restaurant({
+      ...req.body,
+      image: addimage,
+    });
+  } else {
+    const { image, ...restOfUpdatedRestaurant } = req.body;
+    updateRestaurant = restOfUpdatedRestaurant;
+  }
+
   const updatedRestaurant = await Restaurant.findByIdAndUpdate(
     restaurantId,
-    { ...req.body },
+    { ...updateRestaurant },
     {
       new: true,
     }

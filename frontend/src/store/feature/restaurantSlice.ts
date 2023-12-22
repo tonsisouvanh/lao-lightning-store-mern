@@ -71,13 +71,7 @@ export const createRestaurant = createAsyncThunk<
 
       return data;
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      throw thunkApi.rejectWithValue(message);
+      throw thunkApi.rejectWithValue(error.response.data.message);
     }
   },
 );
@@ -145,7 +139,7 @@ export const updateRestaurant = createAsyncThunk<
 );
 
 const resetRestaurantSlice = (state: RetaurantSlice) => {
-  state.restaurants = initialState.restaurants;
+  // state.restaurants = initialState.restaurants;
   state.addStatus = "idle";
   state.deleteStatus = "idle";
   state.listStatus = "idle";

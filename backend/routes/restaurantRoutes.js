@@ -1,9 +1,6 @@
 import express from "express";
 import multer from "multer";
-import {
-  uploadSingleImage,
-  uploadMultipleImages,
-} from "../config/uploadImage.js";
+
 const router = express.Router();
 import {
   getRestaurants,

@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { useLocation } from "react-router-dom";
 
 type Props = {};
 
 const EditFood = (props: Props) => {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [openingHours, setOpeningHours] = useState<string>("");
@@ -39,7 +39,7 @@ const EditFood = (props: Props) => {
           <h1 className="title-font mb-4 text-2xl font-medium text-secondary sm:text-3xl">
             Edit Food
           </h1>
-          <Breadcrumbs pathname={pathname}/>
+          <Breadcrumbs pathname={pathname} />
         </div>
         <div className="mx-auto md:w-2/3 lg:w-1/2">
           <form onSubmit={handleSubmit} className="">
@@ -109,7 +109,9 @@ const EditFood = (props: Props) => {
             </div>
             <div className="mt-8 flex w-full gap-4 border-t border-gray-200 p-2 pt-8 text-center">
               <button className="btn btn-primary">CREATE</button>
-              <button className="btn btn-outline btn-primary">CANCEL</button>
+              <Link to="/admin/restaurantlist">
+                <button className="btn btn-outline btn-primary">CANCEL</button>
+              </Link>
             </div>
           </form>
         </div>

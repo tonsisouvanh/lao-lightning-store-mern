@@ -1,24 +1,27 @@
 import { FormEvent, useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { AiFillFileImage } from "react-icons/ai";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import ImageUpload from "../../components/layout/ImageUpload";
 import { useAppDispatch, useAppSelector } from "../../hook/hook";
-import { RootState } from "../../store/store";
 import { fetchRestaurantById } from "../../store/feature/restaurantDetailSlice";
 import { reset, updateRestaurant } from "../../store/feature/restaurantSlice";
-import toast from "react-hot-toast";
+import { RootState } from "../../store/store";
+import { Restaurant } from "../../type";
 
 type Props = {};
 
 const EditRestaurant = (props: Props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [base64, setBase64] = useState<string | null>(null);
   const { id } = useParams();
   const { pathname } = useLocation();
-
-  const dispatch = useAppDispatch();
-  const { restaurant, status } = useAppSelector(
+  const [uploadImageToggle, setuploadImageToggle] = useState(false);
+  const { restaurant, error, status } = useAppSelector(
     (state: RootState) => state.restaurantDetail,
   );
-
   const { error: restaurantError, updateStatus } = useAppSelector(
     (state: RootState) => state.restaurant,
   );
@@ -40,33 +43,24 @@ const EditRestaurant = (props: Props) => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (status === "succeeded" && restaurant) {
+    if (restaurant) {
       setName(restaurant?.name || "");
       setDescription(restaurant?.description || "");
       setOpeningHours(restaurant?.openingHours || "");
       setLocation(restaurant?.location || "");
     }
-  }, [restaurant, status]);
-
-  useEffect(() => {
-    if (updateStatus === "succeeded") {
-      toast.success("Added");
-      navigate("/admin/restaurantlist");
-    } else if (updateStatus === "failed") {
-      toast.error(restaurantError);
-    }
-    dispatch(reset());
-  }, [updateStatus, dispatch, restaurantError,navigate]);
+  }, [restaurant, updateStatus]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    const updatedRestaurant = {
+    const addImage: string[] | null = base64 ? [base64 as string] : null;
+    const updatedRestaurant: Restaurant = {
       _id: id,
       name,
       description,
       openingHours,
       location,
+      image: addImage ? addImage : [],
     };
 
     const updateData = async () => {
@@ -74,6 +68,17 @@ const EditRestaurant = (props: Props) => {
     };
     updateData();
   };
+
+  useEffect(() => {
+    if (updateStatus === "succeeded") {
+      toast.success("Updated!");
+      dispatch(reset());
+      navigate("/admin/restaurantlist");
+    } else if (updateStatus === "failed") {
+      toast.error(error);
+      dispatch(reset());
+    }
+  }, [updateStatus, dispatch, navigate, error]);
 
   return (
     <section className="body-font relative">
@@ -97,8 +102,7 @@ const EditRestaurant = (props: Props) => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Your full name"
-                    className="input input-bordered w-full text-secondary/50"
+                    className="input input-bordered w-full text-secondary/70"
                   />
                 </label>
               </div>
@@ -112,8 +116,7 @@ const EditRestaurant = (props: Props) => {
                     name="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Description"
-                    className="textarea textarea-bordered w-full text-secondary/50"
+                    className="textarea textarea-bordered w-full text-secondary/70"
                   />
                 </label>
               </div>
@@ -128,8 +131,7 @@ const EditRestaurant = (props: Props) => {
                     type="text"
                     value={openingHours}
                     onChange={(e) => setOpeningHours(e.target.value)}
-                    placeholder="Opening Hours"
-                    className="input input-bordered w-full text-secondary/50"
+                    className="input input-bordered w-full text-secondary/70"
                   />
                 </label>
               </div>
@@ -144,19 +146,46 @@ const EditRestaurant = (props: Props) => {
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    placeholder="Location"
-                    className="input input-bordered w-full text-secondary/50"
+                    className="input input-bordered w-full text-secondary/70"
                   />
                 </label>
+              </div>
+              <div className="relative mb-4">
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text">Image</span>
+                  </div>
+                  {base64 ? (
+                    <img
+                      src={base64}
+                      alt={restaurant?.name || "image"}
+                      className="mb-4 h-[20rem] w-fit"
+                    />
+                  ) : (
+                    <img
+                      src={restaurant?.image[0]}
+                      alt={restaurant?.name || "image"}
+                    />
+                  )}
+                  {uploadImageToggle && <ImageUpload setBase64={setBase64} />}
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setuploadImageToggle(!uploadImageToggle)}
+                  className="btn btn-outline btn-sm mt-4"
+                >
+                  <AiFillFileImage />
+                  {uploadImageToggle ? "Close" : "Edit"}
+                </button>
               </div>
             </div>
             <div className="mt-8 flex w-full gap-4 border-t border-gray-200 p-2 pt-8 text-center">
               <button type="submit" className="btn btn-primary">
                 UPDATE
               </button>
-              <button type="button" className="btn btn-outline btn-primary">
-                CANCEL
-              </button>
+              <Link to="/admin/restaurantlist">
+                <button className="btn btn-outline btn-primary">CANCEL</button>
+              </Link>
             </div>
           </form>
         </div>
