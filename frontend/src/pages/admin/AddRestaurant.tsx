@@ -6,10 +6,11 @@ import { RootState } from "../../store/store";
 import { createRestaurant, reset } from "../../store/feature/restaurantSlice";
 import { Restaurant } from "../../type";
 import toast from "react-hot-toast";
+import ImageUpload from "../../components/layout/ImageUpload";
 
-type Props = {};
+const AddRestaurant = () => {
+  const [base64, setBase64] = useState<string | null>(null);
 
-const AddRestaurant = (props: Props) => {
   const dispatch = useAppDispatch();
   const { restaurants, error, addStatus } = useAppSelector(
     (state: RootState) => state.restaurant,
@@ -23,13 +24,15 @@ const AddRestaurant = (props: Props) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
+    const addImage: string[] = [base64 as string];
     const restaurantData: Restaurant = {
       name: name,
       description: description,
       openingHours: openingHours,
       location: location,
+      image: addImage,
     };
+    console.log("🚀 ~ file: AddRestaurant.tsx:35 ~ handleSubmit ~ restaurantData:", restaurantData)
 
     const fetchData = async () => {
       await dispatch(createRestaurant({ restaurantData }));
@@ -50,46 +53,10 @@ const AddRestaurant = (props: Props) => {
     }
     dispatch(reset());
   }, [addStatus, dispatch]);
-
   return (
     <section className="body-font relative">
       <div className="container mx-auto px-5 py-24">
         <div className="mb-12 flex w-full flex-col text-center">
-          {/* {addStatus === "succeeded" ? (
-            <div className="alert alert-success">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="h-6 w-6 shrink-0 stroke-info"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span>Data has been added</span>
-            </div>
-          ) : addStatus === "failed" ? (
-            <div className="alert alert-error">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="h-6 w-6 shrink-0 stroke-info"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span>{error}</span>
-            </div>
-          ) : null} */}
           <h1 className="title-font mb-4 text-2xl font-medium text-secondary sm:text-3xl">
             Add Restaurant
           </h1>
@@ -158,6 +125,18 @@ const AddRestaurant = (props: Props) => {
                     placeholder="Location"
                     className="input input-bordered w-full text-secondary/50"
                   />
+                </label>
+              </div>
+              <div className="relative mb-4">
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text">Image</span>
+                  </div>
+                  {base64 ? (
+                    <img src={base64} alt="Base64 Image" />
+                  ) : (
+                    <ImageUpload setBase64={setBase64} />
+                  )}
                 </label>
               </div>
             </div>

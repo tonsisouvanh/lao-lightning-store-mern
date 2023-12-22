@@ -6,15 +6,21 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
 import restaurantRoute from "./routes/restaurantRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-dotenv.config();
 
+dotenv.config();
 connectDB();
 
 const app = express();
-
 app.use(cors());
+app.use(express.json({ limit: "25mb" }));
+app.use(express.urlencoded({ limit: "25mb" }));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+});
+// app.use(express.json());
 
-app.use(express.json());
+// app.use(upload.any());
 
 app.get("/", (req, res) => {
   res.send("API is running....");
@@ -22,6 +28,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/restaurants", restaurantRoute);
+// app.use("/api/upload", uploadRoute);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hook/hook";
 import { useEffect, useState } from "react";
-import { signIn } from "../store/feature/authSlice";
+import { reset, signIn } from "../store/feature/authSlice";
 import { RootState } from "../store/store";
+import toast from "react-hot-toast";
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -10,13 +11,24 @@ const SigninPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const { auth, error } = useAppSelector((state: RootState) => state.auth);
+  const { auth, error, status } = useAppSelector(
+    (state: RootState) => state.auth,
+  );
 
   useEffect(() => {
     if (auth) {
       navigate("/");
     }
   }, [navigate, auth]);
+
+  useEffect(() => {
+    if (status === "succeeded") {
+      toast.success("Login successful");
+      navigate("/");
+    } else if (status === "failed" && error) {
+      toast.error(error);
+    }
+  }, [status, dispatch, error,navigate]);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

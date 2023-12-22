@@ -27,6 +27,7 @@ import SigninPage from "./pages/SigninPage.tsx";
 import SignupPage from "./pages/SignupPage.tsx";
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
+import Contact from "./components/layout/Contact.tsx";
 function App() {
   return (
     <React.Fragment>
@@ -40,6 +41,7 @@ function App() {
             <Route path="/blog/create" element={<CreateBlog />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SigninPage />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/profile" element={<ProfilePage />} />
 
             <Route path="/admin" element={<AdminLayout />}>

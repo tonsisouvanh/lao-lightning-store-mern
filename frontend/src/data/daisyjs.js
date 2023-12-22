@@ -10,7 +10,6 @@ const jscript = () => {
    <span className="loading loading-ball loading-md"></span>
    <span className="loading loading-bars loading-md"></span>
    <span className="loading loading-infinity loading-md"></span>
-    
     </>
   )
 }

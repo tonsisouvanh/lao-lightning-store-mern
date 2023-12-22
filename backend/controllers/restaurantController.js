@@ -1,5 +1,12 @@
 import asyncHandler from "express-async-handler";
 import Restaurant from "../models/restaurantModel.js";
+import { uploadSingleImage } from "../utils/imageUpload.js";
+const opts = {
+  overwrite: true,
+  invalidate: true,
+  resource_type: "auto",
+  folder: "/laolightningstore/restaurant",
+};
 
 // @desc    Fetch all restaurants
 // @route   GET /api/restaurants
@@ -57,7 +64,6 @@ const deleteRestaurant = asyncHandler(async (req, res) => {
 // @desc    Create a restaurant
 // @route   POST /api/restaurants
 // @access  Private/Admin
-
 const createRestaurant = asyncHandler(async (req, res) => {
   const { name, description, openingHours, location, image } = req.body;
 
@@ -66,7 +72,7 @@ const createRestaurant = asyncHandler(async (req, res) => {
     description,
     openingHours,
     location,
-    image,
+    image: image,
   });
 
   const createdRestaurant = await newRestaurant.save();
@@ -84,7 +90,6 @@ const createRestaurant = asyncHandler(async (req, res) => {
 //* @access  Private/Admin
 const updateRestaurant = asyncHandler(async (req, res) => {
   const restaurantId = req.params.id;
-  console.log(req.body);
   const updatedRestaurant = await Restaurant.findByIdAndUpdate(
     restaurantId,
     { ...req.body },
