@@ -33,6 +33,7 @@ const HomePage = () => {
         subline="Indulge in extraordinary tastes and exquisite dining with our carefully curated selection of top restaurants."
         slidesData={mockRestaurantData}
         slidesPerView={1}
+        path={"/restaurantlist"}
       />
       <Discover
         topic="store"

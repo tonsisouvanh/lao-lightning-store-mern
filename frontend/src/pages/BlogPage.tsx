@@ -69,7 +69,7 @@ const BlogPage = () => {
           ))}
         </Swiper>
         {/* Blog list */}
-        <div className="container mx-auto px-5 py-20">
+        <div className="mx-auto max-w-6xl px-5 py-20 xl:max-w-5xl">
           <div className="my-6 flex flex-col gap-4">
             <div className="carousel gap-2 rounded-box">
               {mockBlogsData.map((item, index) => (
@@ -108,7 +108,7 @@ const BlogPage = () => {
             {mockBlogsData.map((item) => (
               <div className="w-full p-4 md:w-1/3">
                 <div className="h-full overflow-hidden rounded-lg border-2 border-gray-200 border-opacity-60">
-                  <div className="w-full md:h-36 lg:h-48">
+                  <div className="h-48 w-full md:h-36 lg:h-48">
                     <img
                       className="h-full w-full object-cover object-center"
                       src={item?.imageUrl}
@@ -147,9 +147,9 @@ const BlogPage = () => {
           </div>
         </div>
         {/* Latest blog slider */}
-        <div className="container mx-auto px-5 py-20">
+        <div className="mx-auto max-w-6xl px-5 py-20 xl:max-w-5xl">
           <section className="body-font text-gray-600">
-            <div className="container mx-auto px-5 py-24">
+            <div className="">
               <div className="mb-16 flex w-full flex-col gap-2">
                 <div className="mb-6 w-full lg:mb-0 lg:w-1/2">
                   <h1 className="title-font mb-2 text-2xl font-medium text-secondary sm:text-3xl">
@@ -184,7 +184,7 @@ const BlogPage = () => {
               >
                 {slidesData?.map((item) => (
                   <SwiperSlide key={item?.id} className="mb-2 bg-transparent">
-                    <div className="w-full p-4">
+                    <div className="w-full">
                       <div className="h-full overflow-hidden rounded-lg border-2 border-gray-200 border-opacity-60">
                         <div className="h-[16rem] w-full md:h-[12rem] lg:h-[16rem]">
                           <img

@@ -28,7 +28,7 @@ const SigninPage = () => {
     } else if (status === "failed" && error) {
       toast.error(error);
     }
-  }, [status, dispatch, error,navigate]);
+  }, [status, dispatch, error, navigate]);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const SigninPage = () => {
   };
 
   return (
-    <section className="body-font text-gray-600">
+    <section className="body-font text-secondary/80">
       {error && (
         <div role="alert" className="alert alert-error">
           <svg
@@ -57,7 +57,7 @@ const SigninPage = () => {
       )}
       <div className="container mx-auto flex flex-wrap items-center px-5 py-24">
         <div className="pr-0 md:w-1/2 md:pr-16 lg:w-3/5 lg:pr-0">
-          <h1 className="title-font text-3xl font-medium text-gray-900">
+          <h1 className="title-font text-3xl font-medium text-secondary">
             Sign In Now!
           </h1>
           <p className="mt-4 leading-relaxed">
@@ -66,13 +66,13 @@ const SigninPage = () => {
         </div>
         <form
           onSubmit={submitHandler}
-          className="mt-10 flex w-full flex-col rounded-lg bg-gray-100 p-8 md:ml-auto md:mt-0 md:w-1/2 lg:w-2/6"
+          className="mt-10 flex w-full flex-col rounded-lg bg-base-200 p-8 md:ml-auto md:mt-0 md:w-1/2 lg:w-2/6"
         >
-          <h2 className="title-font mb-5 text-lg font-medium text-gray-900">
+          <h2 className="title-font mb-5 text-lg font-medium text-secondary">
             Sign Up
           </h2>
           <div className="relative mb-4">
-            <label className="text-sm leading-7 text-gray-600">Email</label>
+            <label className="text-sm leading-7 text-secondary">Email</label>
             <input
               type="email"
               id="email"
@@ -82,7 +82,7 @@ const SigninPage = () => {
             />
           </div>
           <div className="relative mb-4">
-            <label className="text-sm leading-7 text-gray-600">Password</label>
+            <label className="text-sm leading-7 text-secondary">Password</label>
             <input
               type="password"
               id="password"

@@ -9,6 +9,7 @@ import EditFood from "./pages/admin/EditFood.tsx";
 import EditRestaurant from "./pages/admin/EditRestaurant.tsx";
 import FoodListPage from "./pages/admin/FoodListPage.tsx";
 import RestaurantListPage from "./pages/admin/RestaurantListPage.tsx";
+import RestaurantlistPublicPage from "./pages/RestaurantlistPublicPage.tsx";
 
 // const HomePage = lazy(() => import("./pages/HomePage"));
 // const BlogPage = lazy(() => import("./pages/BlogPage"));
@@ -28,6 +29,9 @@ import SignupPage from "./pages/SignupPage.tsx";
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
 import Contact from "./components/layout/Contact.tsx";
+import RestaurantDetail from "./pages/RestaurantDetailPage.tsx";
+import ButtonSrollToTop from "./components/buttons/ButtonSrollToTop.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 function App() {
   return (
     <React.Fragment>
@@ -38,11 +42,17 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog/bloglist" element={<BlogPage />} />
+            {/* <Route path="/blog/bloglist/:id" element={<Blog />} /> */}
             <Route path="/blog/create" element={<CreateBlog />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SigninPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/restaurant/:id" element={<RestaurantDetail />} />
+            <Route
+              path="/restaurantlist"
+              element={<RestaurantlistPublicPage />}
+            />
 
             <Route path="/admin" element={<AdminLayout />}>
               <Route path="dashboard" element={<Dashboard />} />
@@ -57,6 +67,8 @@ function App() {
               <Route path="foodlist/edit/:id" element={<EditFood />} />
             </Route>
           </Routes>
+          <ButtonSrollToTop />
+          <ScrollToTop />
         </div>
         <Footer />
       </div>

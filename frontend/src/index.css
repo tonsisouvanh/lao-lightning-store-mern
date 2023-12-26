@@ -8,9 +8,13 @@
   box-sizing: border-box;
 }
 
-
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
 :root {
-  font-family: 'Outfit', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Outfit", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

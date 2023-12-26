@@ -12,6 +12,7 @@ type Props = {
   cardSize?: string;
   breakpoints?: Record<number, { slidesPerView: number; spaceBetween: number }>;
   topic?: string;
+  path?: string;
 };
 
 const Discover = ({
@@ -22,6 +23,7 @@ const Discover = ({
   breakpoints,
   cardSize,
   topic,
+  path,
 }: Props) => {
   return (
     <div className="relative my-[1rem] h-full w-full overflow-hidden md:my-[4rem] lg:my-[6rem]">
@@ -42,7 +44,7 @@ const Discover = ({
           cardSize={cardSize}
           topic={topic}
         />
-        <Link to="#">
+        <Link to={path || '#'}>
           <button className="btn btn-outline whitespace-nowrap">
             View all
           </button>
